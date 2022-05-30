@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+    <title>TrackerRA</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="trackStyle.css">
+    <link rel="stylesheet" href="font-awesome.min.css">
+</head>
+<body>
+<section class="container">
+  <section class="page-header text-center">
+    <h1><span class="fa fa-book"></span> My Library</h1>
+    <a href="/profile" class="btn btn-default btn-btn-sm">Profile</a>
+    <a href="/addBook" class="btn btn-default btn-sm">Add a Book</a>
+    <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+  </section>
+
+   
+  <section class="row">
+    <section class="col-sm-6">
+      <!-- LOCAL INFORMATION -->
+        <section class="well">
+          <h2>Search</h2>
+          <% if (user.local.email) { %>
+            <form action="">
+              <label for="site-search">Search your library for a book:</label>
+              <input type="search" id="site-search" name="searchLib">
+
+              <button>Get Book</button>
+            </form> 
+          <% %>
+        </section>
+        
+        <section id="second">
+          <div class="well">
+            <h3 class="headingThree">Books</h3>
+            <% for(let i = 0; i < symptoms.length; i++) {%>
+              <section id="<%=symptoms[i]._id%>" class="<%= symptoms[i].checked ? 'done' : '' %>">
+                  <h5 class="dateFont"><%=symptoms[i].date%></h5>
+                  <!-- <h5><%=symptoms[i].date%></h5> -->
+                  <ul>
+                    <li><%=symptoms[i].pain%> Pain</li> 
+                    <li><%=symptoms[i].fatigue%> Fatigue</li>
+                    <li><%=symptoms[i].moodS%> Mood</li>
+                    <li><%=symptoms[i].mobility%> Mobility</li>
+                  </ul>
+                  <h5 class="messageDisplay">Notes: <%=symptoms[i].msg%></h5>
+                  <span id="icon"><i class="fa fa-check-square-o" aria-hidden="true"></i></span>
+                  <span id="iconIcon"><i class="fa fa-trash" aria-hidden="true"></i></span>
+                </section>
+              <% } %>
+        </div>
+          <!-- <% } %> -->
+        </section>
+    </section>
+  </section>
+</section>
+
+<script src="main.js"></script>
+
+</body>
+</html>
