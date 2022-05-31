@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>TrackerRA</title>
+    <title>ILib</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles.css">
@@ -44,42 +44,40 @@
         </div>
         <div class="col-sm-6">
           <div class="well">
-            
-              <h3 class="headingThree"> Books I'd Like to get:</h3>
-              <p>Keep track of any books you're looking forward to reading or purchasing in the future! Just add a note below!</p>
+              <h3 class="headingThree"> Books I Want to Read:</h3>
+              <p>Add a books title and author to keep track of those you'd like to purchase or read in the future! </p>
               <% if (user.local.email) { %>
-                <form action="/bookNotesMsg" method="POST">
-                  <!-- <label for="time">Time:</label>
-                  <input type="time" id="timeOfDrink" name="time"> -->
+                <form action="/track" method="POST">
                   <p>Current Date is <input id="date" type="date" name ="date">.</p>
-
-                  <label class="message" for="message">Enter Title of Book</label>
+                  <label class="message" for="message">Book Title:</label>
                   <input class="msgs" type="text" placeholder="Enter title" name="msg">
-
-                  <label class="message" for="message">Enter Author of Book</label>
+                  <label class="message" for="message">Author:</label>
                   <input class="msgs" type="text" placeholder="Enter author" name="author">
-                  <button class="add" type="submit">Add Note</button>
-
-                  <!-- add author and title to api -->
+                  <label class="message" for="message">What sparked my interest:</label>
+                  <input class="msgs" type="text" placeholder="Enter author" name="interest">
+                  <button class="add" type="submit">Submit</button>
               </form>
           </div>
         </div>
       <div class="col-sm-6" id="second">
-        <h3>Books</h3>
-          
-          <ul class="messages">
-            <% for(var i=0; i<messages.length; i++) {%>
-              <li class="message">
-                <span><%= messages[i].date%></span>
-                <span><%= messages[i].msg %></span>
-                <span><%= messages[i].author %></span>
-                <span><i class="fa fa-star" aria-hidden="true"></i></span>
-                <span><i class="fa fa-trash" aria-hidden="true"></i></span>
-              </li>
-            <% } %>
-          </ul>
+        <h3 class="booksI">Books I'm Interested In</h3>
 
-        </div>
+        <!-- will add potentail ability to check off and move to "bought" section if purchesed or read -->
+
+        <!-- I had to re-do my entire html I used a different template when we were asked a few weeks ago but there was way too much going on -->
+        
+        <ul class="messages">
+          <% for(var i=0; i<purchase.length; i++) {%>
+            <li class="message">
+              <span><%= purchase[i].date %></span>
+              <span>Book Title: <%= purchase[i].msg %></span>
+              <span>Author: <%= purchase[i].author %></span>
+              <span>Sparked Interest: <%= purchase[i].interest %></span>
+            </li>
+          <% } %>
+        </ul>
+
+      </div>
       <% } %>
   </div>
 

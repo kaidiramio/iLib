@@ -25,7 +25,7 @@
           <% if (user.local.email) { %>
             <form id="newBookForm" class="border">
                 <label for="bookTitleToAdd">New Book Title</label>
-                <input type="text" id="bookTitleToAdd" name="title" placeholder="Moby Dick" style="width: 295px">
+                <input type="text" id="bookTitleToAdd" name="title" placeholder="Moby Dick">
                 <button type="submit" value="Submit" id="newBook">Submit Book!</button>
             </form>
           <% %>
@@ -48,15 +48,9 @@
                   <span id="icon"><i class="fa fa-check-square-o" aria-hidden="true"></i></span>
                   <span id="iconIcon"><i class="fa fa-trash" aria-hidden="true"></i></span>
                 </section>
-              <% } %>
-
-    <div id='display'></div>
-    <div id='bookDetail' class='border'>
-      <p id='detailTitle'>Select a book to see it's details and comments</p>
-      <ol id='detailComments'></ol>
-    </div>
-    <button id='deleteAllBooks'>Delete all books...</button>
-  </div>
+            <% } %>
+          </div>
+            
           <!-- <% } %> -->
         </section>
     </section>
@@ -72,25 +66,10 @@
       <input type="text" id="comment" name="comment" value=""><br>
       <input type="submit" value="Submit">
     </form> -->
-  </div>
-  <hr style='margin: 50px'>
-  <div id='sampleui'>
-    <h2 style="text-align: left">Sample Front-End</h2>
-    <form id="newBookForm" class="border">
-      <label for="bookTitleToAdd">New Book Title</label>
-      <input type="text" id="bookTitleToAdd" name="title" placeholder="Moby Dick" style="width: 295px">
-      <button type="submit" value="Submit" id="newBook">Submit New Book!</button>
-    </form>
-    <div id='display'></div>
-    <div id='bookDetail' class='border'>
-      <p id='detailTitle'>Select a book to see it's details and comments</p>
-      <ol id='detailComments'></ol>
-    </div>
-    <button id='deleteAllBooks'>Delete all books...</button>
-  </div>
 
 <script src="main.js"></script>
-<script src="https://www.googleapis.com/books/v1/volumes?q=harry+potter&callback=handleResponse"></script>
+<!-- <script src="https://www.googleapis.com/books/v1/volumes?q=harry+potter&callback=handleResponse"></script> -->
+<!-- have to figure out an book API -->
 
 </body>
 </html>

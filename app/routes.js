@@ -9,26 +9,18 @@ const {ObjectId} = require('mongodb') //gives access to _id in mongodb
         res.render('index.ejs');
     });
 
-    // app.get('/', (req, res) => {
-    //    // name of array is result inside this scope
-    //   db.collection('symptoms').find().toArray((err, result) => {
-    //     if (err) return console.log(err)
-    //     res.render('index.ejs', {symptoms: result})
-    //   })
-    // })
-
-    // PROFILE SECTION =========================
+    // PROFILE SECTION TO CONNECT =========================
     app.get('/profile', isLoggedIn, function(req, res) {
-        db.collection('bookNotesMsg').find().toArray((err, result) => {
-          if (err) return console.log(err)
-          res.render('profile.ejs', {
-            user : req.user,
-            messages: result
-          })
+      db.collection('trackBooks').find().toArray((err, result) => {
+        if (err) return console.log(err)
+        res.render('profile.ejs', {
+          user : req.user,
+          purchase: result
         })
-    });
+      })
+  });
     
-     // LIBRARY SECTION =========================
+    //  LIBRARY SECTION TO CONNECT =========================
     app.get('/library', function(req, res) {
       db.collection('symptoms').find().toArray((err, result) => {
         if (err) return console.log(err)
@@ -39,7 +31,7 @@ const {ObjectId} = require('mongodb') //gives access to _id in mongodb
       })
     });
 
-    // *********** ADD BOOK (think I need a book.js for all book routes and same w/Author) **************
+    // *********** ADD BOOK TO CONNECT (think I need a book.js for all book routes and same w/Author) **************
     app.get('/addBook', function(req, res) {
       db.collection('symptoms').find().toArray((err, result) => {
         if (err) return console.log(err)
@@ -59,8 +51,13 @@ const {ObjectId} = require('mongodb') //gives access to _id in mongodb
     });
 
 // message board PROFILE PAGE (DESIRED BOOK NOTES)routes ===============================================================
-app.post('/bookNotes', (req, res) => {
-  db.collection('bookNotesMsg').save({date: req.body.date, title: req.body.msg, authors: req.body.author}, (err, result) => {
+
+app.post('/track', (req, res) => {
+  db.collection('trackBooks').save({
+    date: req.body.date, 
+    msg: req.body.msg, 
+    author: req.body.author,
+    interest: req.body.interest}, (err, result) => {
     if (err) return console.log(err)
      console.log('saved to database')
     res.redirect('/profile')
@@ -68,22 +65,16 @@ app.post('/bookNotes', (req, res) => {
 })
 
 app.post('/profile', (req, res) => {
-  db.collection('bookNotesMsg').insertOne({date: req.body.date, title: req.body.msg, authors: req.body.author}, (err, result) => {
+  db.collection('trackBooks').insertOne({date: req.body.date, msg: req.body.msg, author: req.body.author, interest: req.body.interest}, (err, result) => {
     if (err) return console.log(err)
     console.log('saved to database')
-    res.redirect('/')
+    res.redirect('/profile')
   })
 })
 
-// app.delete('/delete', (req, res) => {
-//   db.collection('bookNotesMsg').findOneAndDelete({_id: new mongoose.mongo.ObjectID(req.body.id)}, (err, result) => {
-//     if (err) return res.send(500, err)
-//     res.send('Message deleted!')
-//   })
-// })
-
-app.delete('/bookNotesMsg', (req, res) => {
-  db.collection('bookNotesMsg').findOneAndDelete({title: req.body.msg, authors: req.body.author}, (err, result) => {
+// work on delete function for prof
+app.delete('/delete', (req, res) => {
+  db.collection('trackBooks').findOneAndDelete({_id: new mongoose.mongo.ObjectID(req.body.id)}, (err, result) => {
     if (err) return res.send(500, err)
     res.send('Message deleted!')
   })

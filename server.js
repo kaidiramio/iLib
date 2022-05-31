@@ -12,9 +12,8 @@ const mongoose = require('mongoose');//Another way of connecting to the database
 mongoose.set('useNewUrlParser', true);//fixes deprecation error with newer version of parser: (https://stackoverflow.com/questions/50448272/avoid-current-url-string-parser-is-deprecated-warning-by-setting-usenewurlpars)
 mongoose.set('useUnifiedTopology', true);//fixes deprecation error, 
 
-// API - book? 
-// const apiRoutes         = require('./routes/api.js');
 
+// const apiRoutes         = require('./routes/api.js'); // api
 const passport = require('passport');
 const flash    = require('connect-flash');//flash shows if you enter wrong password
 const morgan       = require('morgan');//morgan runs with server. Logs errthing happening in application
@@ -34,6 +33,12 @@ mongoose.connect(configDB.url, (err, database) => {
   db = database //this db is coming from where the server just connected to.
   require('./app/routes.js')(app, passport, db);//again, (./app...) spits out a function and then (app, pass..) are the arguments being passed in.
 }); // connect to our database
+
+
+//Routing for API 
+// apiRoutes(app);  
+
+
 
 require('./config/passport')(passport); // pass passport for configuration
 
