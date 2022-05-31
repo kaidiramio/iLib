@@ -1,7 +1,5 @@
 ## ILib App
 
-![RA facts](https://www.gene.com/assets/frontend/img/content/stories-what-is-rheumatoid-athritis-infographic.png)
-
 <!-- gif converter is not working will update tomorrow -->
 
 ## Design
